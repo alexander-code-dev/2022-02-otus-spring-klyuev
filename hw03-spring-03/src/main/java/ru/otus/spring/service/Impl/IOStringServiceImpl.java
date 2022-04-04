@@ -1,18 +1,26 @@
 package ru.otus.spring.service.Impl;
 
 import lombok.AccessLevel;
-import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.springframework.stereotype.Component;
 import ru.otus.spring.service.IOService;
 
 import java.util.Scanner;
 
-@RequiredArgsConstructor
-@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
-public class IOStringServiceImpl implements IOService {
+@Component
+@FieldDefaults(level = AccessLevel.PRIVATE)
+public class IOStringServiceImpl implements IOService<Scanner> {
 
     Scanner scanner;
 
+    @Override
+    public void setReader(Scanner reader) {
+        this.scanner = reader;
+    }
+    @Override
+    public void closeReader() {
+        this.scanner.close();
+    }
     @Override
     public String read() {
         return scanner.nextLine();

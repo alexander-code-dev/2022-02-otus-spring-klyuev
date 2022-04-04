@@ -9,7 +9,7 @@ logging:
     ru.otus.spring: DEBUG
 application:
   path: file.load.path
-  locale: ru
+  locale: en
   messagenotloaded: test.not.loaded.message
   ready: ready.to.take.question
   answer: enter.your.answer
@@ -19,3 +19,5 @@ application:
   correctanswers: correct.answers
   wronganswers: wrong.answers
   problem: problem.you.can.come.later
+  agree: agree
+  shortagree: short.agree

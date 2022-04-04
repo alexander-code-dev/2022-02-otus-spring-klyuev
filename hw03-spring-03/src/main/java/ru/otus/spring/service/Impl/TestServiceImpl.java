@@ -13,6 +13,7 @@ import ru.otus.spring.service.TestService;
 
 import java.util.List;
 import java.util.Locale;
+import java.util.Scanner;
 
 @Component
 @RequiredArgsConstructor
@@ -26,14 +27,14 @@ public class TestServiceImpl implements TestService {
 
     @Override
     public void runTest() {
+        sTest.loadTest(mService.getMessage(properties.getPath()));
+        ioService.setReader(new Scanner(System.in));
         if (this.sTest.getQuestion().size() != 0) {
             ioService.output(mService.getMessage(properties.getReady(), new Integer[]{sTest.getQuestion().size()}));
             ioService.output(mService.getMessage(properties.getAnswer()));
             String agree = ioService.read();
-            if ((agree.toLowerCase(Locale.ROOT).equals("y")
-                    || agree.toLowerCase(Locale.ROOT).equals("yes")
-                    || agree.toLowerCase(Locale.ROOT).equals("д")
-                    || agree.toLowerCase(Locale.ROOT).equals("да"))
+            if (agree.toLowerCase(Locale.ROOT).equals(mService.getMessage(properties.getShortAgree()))
+                    || agree.toLowerCase(Locale.ROOT).equals(mService.getMessage(properties.getAgree()))
                     && this.sTest.getQuestion().size() != 0)
             {
                 for (int i = 0; i < this.sTest.getQuestion().size(); i++) {
@@ -46,6 +47,7 @@ public class TestServiceImpl implements TestService {
         } else {
             ioService.output(mService.getMessage(properties.getMessageNotLoaded()));
         }
+        ioService.closeReader();
     }
 
     @Override

@@ -16,8 +16,10 @@ class IOStringServiceImplTest {
     @Test
     @DisplayName("correct reading from the console")
     void readAndReadInt() {
-        ioService = new IOStringServiceImpl(new Scanner(new ByteArrayInputStream("yes\n4".getBytes())));
+        ioService = new IOStringServiceImpl();
+        ioService.setReader(new Scanner(new ByteArrayInputStream("yes\n4".getBytes())));
         assertEquals("yes", ioService.read());
         assertEquals(4, ioService.readInt());
+        ioService.closeReader();
     }
 }

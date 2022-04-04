@@ -22,4 +22,6 @@ public class PropertiesForConfig {
     String totalQuestions;
     String correctAnswers;
     String wrongAnswers;
+    String agree;
+    String shortAgree;
 }
