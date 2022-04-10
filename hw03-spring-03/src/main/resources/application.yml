@@ -1,0 +1,23 @@
+spring:
+  messages:
+    basename: i18n/messages
+    encoding: UTF-8
+  main:
+    banner-mode: off
+logging:
+  level:
+    ru.otus.spring: DEBUG
+application:
+  path: file.load.path
+  locale: en
+  messagenotloaded: test.not.loaded.message
+  ready: ready.to.take.question
+  answer: enter.your.answer
+  question: question
+  summingresults: summing.results
+  totalquestions: total.questions
+  correctanswers: correct.answers
+  wronganswers: wrong.answers
+  problem: problem.you.can.come.later
+  agree: agree
+  shortagree: short.agree
