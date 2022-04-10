@@ -1,0 +1,8 @@
+application:
+  path: questions.csv
+spring:
+  shell:
+    interactive:
+      enabled: false
+  main:
+    allow-circular-references: true
