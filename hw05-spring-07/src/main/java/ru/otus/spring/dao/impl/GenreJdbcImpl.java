@@ -52,11 +52,11 @@ public class GenreJdbcImpl implements GenreJdbc {
         Map<String, Object> params = Collections.singletonMap("id", id);
         List<Genre> list = namedParameterJdbcTemplate
                 .query("select g.id as genre_id, g.name as genre_name, " +
-                        "b.id as book_id, b.name as book_name, b.description, b.page_volume, b.book_release_year, " +
-                        "a.id as author_id, a.name as author_name, a.surname " +
+                        "b.id as book_id, b.name as book_name, b.description, b.page_volume, b.book_release_year " +
+                        //"a.id as author_id, a.name as author_name, a.surname " +
                         "from genre g " +
                         "left join book b on g.id = b.genre_id " +
-                        "left join author a on b.author_id = a.id" +
+                        //"left join author a on b.author_id = a.id" +
                         "   where 1=1 " +
                         "       and g.id = :id " +
                                 "ORDER BY g.id ",
@@ -67,11 +67,11 @@ public class GenreJdbcImpl implements GenreJdbc {
     @Override
     public List<Genre> getAll() {
         return namedParameterJdbcTemplate.query("select g.id as genre_id, g.name as genre_name, " +
-                        "b.id as book_id, b.name as book_name, b.description, b.page_volume, b.book_release_year, " +
-                        "a.id as author_id, a.name as author_name, a.surname " +
+                        "b.id as book_id, b.name as book_name, b.description, b.page_volume, b.book_release_year " +
+                        //"a.id as author_id, a.name as author_name, a.surname " +
                         "from genre g " +
                         "left join book b on g.id = b.genre_id " +
-                        "left join author a on b.author_id = a.id " +
+                        //"left join author a on b.author_id = a.id " +
                         "ORDER BY g.id "
                 ,
                 new GenreLeftJoinBook());
@@ -109,12 +109,12 @@ public class GenreJdbcImpl implements GenreJdbc {
                 int bookReleaseYear = rs.getInt("book_release_year");
 
                 // Author
-                long authorId = rs.getInt("author_id");
-                String authorName = rs.getString("author_name");
-                String surname = rs.getString("surname");
+                //long authorId = rs.getInt("author_id");
+                //String authorName = rs.getString("author_name");
+                //String surname = rs.getString("surname");
 
                 Book book = new Book(bookId, bookName, description, pageVolume, bookReleaseYear,
-                        new Author(authorId, authorName, surname, new ArrayList<>()),
+                        new Author(),
                         new Genre(genreId, genreName, new ArrayList<>()));
 
                 // add element

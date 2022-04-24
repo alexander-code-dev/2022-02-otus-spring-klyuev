@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Objects;
 
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)

@@ -54,11 +54,11 @@ public class AuthorJdbcImpl implements AuthorJdbc {
         Map<String, Object> params = Collections.singletonMap("id", id);
         List<Author> list = namedParameterJdbcTemplate
                 .query("select a.id as author_id, a.name as author_name, a.surname, " +
-                                "b.id as book_id, b.name as book_name, b.description, b.page_volume, b.book_release_year," +
-                                "g.id as genre_id, g.name as genre_name " +
+                                "b.id as book_id, b.name as book_name, b.description, b.page_volume, b.book_release_year " +
+                                //"g.id as genre_id, g.name as genre_name " +
                                 "from author a " +
                                 "left join book b on a.id = b.author_id " +
-                                "left join genre g on b.genre_id = g.id" +
+                                //"left join genre g on b.genre_id = g.id" +
                                 "   where 1=1 " +
                                 "       and a.id = :id " +
                                 " ORDER BY a.id",
@@ -70,11 +70,11 @@ public class AuthorJdbcImpl implements AuthorJdbc {
     public List<Author> getAll() {
         return namedParameterJdbcTemplate
                 .query("select a.id as author_id, a.name as author_name, a.surname, " +
-                        "b.id as book_id, b.name as book_name, b.description, b.page_volume, b.book_release_year," +
-                        "g.id as genre_id, g.name as genre_name " +
+                        "b.id as book_id, b.name as book_name, b.description, b.page_volume, b.book_release_year " +
+                        //"g.id as genre_id, g.name as genre_name " +
                         "from author a " +
                         "left join book b on a.id = b.author_id " +
-                        "left join genre g on b.genre_id = g.id " +
+                        //"left join genre g on b.genre_id = g.id " +
                                 "ORDER BY a.id",
                         new AuthorLeftJoinBook());
     }
@@ -114,12 +114,12 @@ public class AuthorJdbcImpl implements AuthorJdbc {
                 int bookReleaseYear = rs.getInt("book_release_year");
 
                 // Genre
-                long genreId = rs.getLong("genre_id");
-                String genreName = rs.getString("genre_name");
+                //long genreId = rs.getLong("genre_id");
+                //String genreName = rs.getString("genre_name");
 
                 Book book = new Book(bookId, bookName, description, pageVolume, bookReleaseYear,
                         new Author(authorId, authorName, surname, new ArrayList<>()),
-                        new Genre(genreId, genreName, new ArrayList<>()));
+                        new Genre());
 
                 // add element
                 if (authors.keySet().stream().noneMatch(f -> f.equals(authorId))) {
