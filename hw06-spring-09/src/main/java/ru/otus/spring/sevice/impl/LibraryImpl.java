@@ -84,7 +84,7 @@ public class LibraryImpl implements Library {
         }
         books.forEach(f-> System.out.println(System.lineSeparator() + "№ "+f.getId()+System.lineSeparator()
                 +" - name: "+ f.getName()+System.lineSeparator()
-                +" - description: "+f.getDescription()+System.lineSeparator()
+                +" - description: "+f.getDescription().getDescription()+System.lineSeparator()
                 +" - release: "+ f.getBookReleaseYear()+System.lineSeparator()
                 +" - volume: "+ f.getPageVolume()+System.lineSeparator()
                 +" - genre: "+ f.getGenre().getName()+System.lineSeparator()
