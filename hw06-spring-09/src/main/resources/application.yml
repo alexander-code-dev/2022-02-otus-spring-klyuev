@@ -1,6 +1,5 @@
 spring:
   jpa:
-    show-sql: true
     generate-ddl: false
   datasource:
     url: jdbc:postgresql://localhost:5430/demoDB
