@@ -30,11 +30,11 @@ public class Book {
     @Column(name = "BOOK_RELEASE_YEAR")
     int bookReleaseYear;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "AUTHOR_ID")
     Author author;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "GENRE_ID")
     Genre genre;
 
@@ -43,12 +43,12 @@ public class Book {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Book book = (Book) o;
-        return pageVolume == book.pageVolume && bookReleaseYear == book.bookReleaseYear && Objects.equals(id, book.id) && Objects.equals(name, book.name) && Objects.equals(description, book.description);
+        return Objects.equals(id, book.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, description, pageVolume, bookReleaseYear);
+        return Objects.hash(id);
     }
 
     @Override

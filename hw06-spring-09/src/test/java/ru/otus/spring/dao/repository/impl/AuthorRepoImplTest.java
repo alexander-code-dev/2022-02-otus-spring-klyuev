@@ -7,7 +7,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.context.annotation.Import;
 import ru.otus.spring.dao.entity.Author;
-import ru.otus.spring.dao.repository.AuthorRepo;
+import ru.otus.spring.dao.repository.CRUD;
 
 import java.util.Optional;
 
@@ -20,7 +20,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class AuthorRepoImplTest {
 
     @Autowired
-    AuthorRepo authorRepo;
+    CRUD<Author> authorRepo;
     @Autowired
     TestEntityManager testEntityManager;
 

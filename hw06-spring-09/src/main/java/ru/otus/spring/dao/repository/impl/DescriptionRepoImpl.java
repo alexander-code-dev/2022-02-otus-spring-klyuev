@@ -3,11 +3,9 @@ package ru.otus.spring.dao.repository.impl;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Isolation;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.stereotype.Component;
 import ru.otus.spring.dao.entity.Description;
-import ru.otus.spring.dao.repository.DescriptionRepo;
+import ru.otus.spring.dao.repository.CRUD;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,10 +13,10 @@ import javax.persistence.TypedQuery;
 import java.util.List;
 import java.util.Optional;
 
-@Repository
+@Component
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
-public class DescriptionRepoImpl implements DescriptionRepo {
+public class DescriptionRepoImpl implements CRUD<Description> {
 
     @PersistenceContext
     EntityManager entityManager;

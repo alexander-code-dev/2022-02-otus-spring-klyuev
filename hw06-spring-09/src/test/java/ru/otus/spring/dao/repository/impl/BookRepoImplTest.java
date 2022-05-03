@@ -6,15 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Import;
 import ru.otus.spring.dao.entity.Author;
 import ru.otus.spring.dao.entity.Book;
 import ru.otus.spring.dao.entity.Description;
 import ru.otus.spring.dao.entity.Genre;
-import ru.otus.spring.dao.repository.AuthorRepo;
-import ru.otus.spring.dao.repository.BookRepo;
-import ru.otus.spring.dao.repository.DescriptionRepo;
-import ru.otus.spring.dao.repository.GenreRepo;
+import ru.otus.spring.dao.repository.*;
 
 import java.util.Optional;
 
@@ -27,13 +23,13 @@ import static org.junit.jupiter.api.Assertions.*;
 class BookRepoImplTest {
 
     @Autowired
-    GenreRepo genreRepo;
+    CRUD<Genre> genreRepo;
     @Autowired
-    DescriptionRepo descriptionRepo;
+    CRUD<Description> descriptionRepo;
     @Autowired
-    BookRepo bookRepo;
+    CRUD<Book> bookRepo;
     @Autowired
-    AuthorRepo authorRepo;
+    CRUD<Author> authorRepo;
     @Autowired
     TestEntityManager testEntityManager;
 

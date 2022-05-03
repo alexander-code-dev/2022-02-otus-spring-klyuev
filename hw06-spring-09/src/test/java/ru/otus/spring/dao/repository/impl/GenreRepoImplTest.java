@@ -6,10 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.context.annotation.Import;
-import ru.otus.spring.dao.entity.Author;
 import ru.otus.spring.dao.entity.Genre;
-import ru.otus.spring.dao.repository.AuthorRepo;
-import ru.otus.spring.dao.repository.GenreRepo;
+import ru.otus.spring.dao.repository.CRUD;
 
 import java.util.Optional;
 
@@ -22,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class GenreRepoImplTest {
 
     @Autowired
-    GenreRepo genreRepo;
+    CRUD<Genre> genreRepo;
     @Autowired
     TestEntityManager testEntityManager;
 

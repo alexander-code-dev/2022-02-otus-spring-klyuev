@@ -8,9 +8,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.context.annotation.Import;
 import ru.otus.spring.dao.entity.Book;
 import ru.otus.spring.dao.entity.Description;
-import ru.otus.spring.dao.entity.Genre;
-import ru.otus.spring.dao.repository.DescriptionRepo;
-import ru.otus.spring.dao.repository.GenreRepo;
+import ru.otus.spring.dao.repository.CRUD;
 
 import java.util.Optional;
 
@@ -23,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class DescriptionRepoImplTest {
 
     @Autowired
-    DescriptionRepo descriptionRepo;
+    CRUD<Description> descriptionRepo;
     @Autowired
     TestEntityManager testEntityManager;
 
