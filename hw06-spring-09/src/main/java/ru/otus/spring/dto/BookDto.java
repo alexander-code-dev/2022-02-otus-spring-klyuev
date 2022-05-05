@@ -11,9 +11,9 @@ import ru.otus.spring.dao.entity.Genre;
 public class BookDto {
     Long id;
     String name;
-    Description description;
+    DescriptionDto descriptionDto;
     int pageVolume;
     int bookReleaseYear;
-    Author author;
-    Genre genre;
+    AuthorDto authorDto;
+    GenreDto genreDto;
 }

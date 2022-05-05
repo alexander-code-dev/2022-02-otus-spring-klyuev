@@ -11,5 +11,5 @@ import java.util.List;
 public class GenreDto {
     Long id;
     String name;
-    List<Book> books;
+    List<BookDto> bookDtoList;
 }

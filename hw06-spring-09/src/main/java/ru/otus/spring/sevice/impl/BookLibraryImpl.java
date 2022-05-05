@@ -9,13 +9,12 @@ import ru.otus.spring.dao.entity.Author;
 import ru.otus.spring.dao.entity.Book;
 import ru.otus.spring.dao.entity.Description;
 import ru.otus.spring.dao.entity.Genre;
-import ru.otus.spring.dao.repository.*;
+import ru.otus.spring.dao.repository.CRUD;
 import ru.otus.spring.dto.AuthorDto;
 import ru.otus.spring.dto.BookDto;
 import ru.otus.spring.dto.DescriptionDto;
 import ru.otus.spring.dto.GenreDto;
 import ru.otus.spring.sevice.BookLibrary;
-import ru.otus.spring.sevice.OBook;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,11 +29,8 @@ public class BookLibraryImpl implements BookLibrary {
     CRUD<Book> bookRepo;
     CRUD<Author> authorRepo;
 
-    OBook oBook;
-
     @Override
-    @Transactional(readOnly = true)
-    public void selectBook(String id) {
+    public List<Book> selectBook(String id) {
         List<Book> books = new ArrayList<>();
         if (id.equals("all")) {
             books.addAll(bookRepo.findAll());
@@ -44,7 +40,7 @@ public class BookLibraryImpl implements BookLibrary {
                 books.add(bookRepo.findById(bookId).get());
             }
         }
-        oBook.print(books);
+        return books;
     }
 
     @Override
@@ -52,19 +48,21 @@ public class BookLibraryImpl implements BookLibrary {
     public void updateBook(BookDto bookDto) {
         if (bookRepo.findById(bookDto.getId()).isPresent()) {
             Book book = bookRepo.findById(bookDto.getId()).get();
-            book.setName(bookDto.getName());
-            book.setPageVolume(bookDto.getPageVolume());
-            book.setBookReleaseYear(bookDto.getBookReleaseYear());
-            bookRepo.save(book);
-            oBook.print("Done");
-        } else {
-            oBook.print("Incorrectly specified id book");
+            if (!"unknownBookName".equals(bookDto.getName())) {
+                book.setName(bookDto.getName());
+            }
+            if (0 != bookDto.getPageVolume()) {
+                book.setPageVolume(bookDto.getPageVolume());
+            }
+            if (0 != bookDto.getBookReleaseYear()) {
+                book.setBookReleaseYear(bookDto.getBookReleaseYear());
+            }
         }
     }
 
     @Override
     @Transactional
-    public void insertBook(AuthorDto authorDto, GenreDto genreDto, BookDto bookDto, DescriptionDto descriptionDto) {
+    public Long insertBook(AuthorDto authorDto, GenreDto genreDto, BookDto bookDto, DescriptionDto descriptionDto) {
 
         Author author = new Author();
         author.setName(authorDto.getName());
@@ -88,7 +86,7 @@ public class BookLibraryImpl implements BookLibrary {
         book.setPageVolume(bookDto.getPageVolume());
         bookRepo.save(book);
 
-        oBook.print("Add new book assigned id - "+book.getId()+System.lineSeparator()+"Done");
+        return book.getId();
     }
 
     @Override
@@ -98,9 +96,6 @@ public class BookLibraryImpl implements BookLibrary {
         if (bookRepo.findById(bookId).isPresent()) {
             Book book = bookRepo.findById(bookId).get();
             bookRepo.remove(book);
-            oBook.print("Done");
-        } else {
-            oBook.print("Incorrectly specified id book");
         }
     }
 }

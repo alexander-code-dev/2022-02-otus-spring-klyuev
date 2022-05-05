@@ -2,6 +2,6 @@ package ru.otus.spring.mappers;
 
 import ru.otus.spring.dto.AuthorDto;
 
-public interface MAuthor {
+public interface AuthorMapper {
     AuthorDto convertToDto(String authorName, String authorSurname);
 }

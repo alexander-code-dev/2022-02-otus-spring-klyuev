@@ -8,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.otus.spring.dao.entity.Author;
 import ru.otus.spring.dao.repository.CRUD;
 import ru.otus.spring.sevice.AuthorLibrary;
-import ru.otus.spring.sevice.OAuthor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,11 +18,9 @@ import java.util.List;
 public class AuthorLibraryImpl implements AuthorLibrary {
 
     CRUD<Author> repository;
-    OAuthor oAuthor;
 
     @Override
-    @Transactional(readOnly = true)
-    public void selectAuthor(String id) {
+    public List<Author> selectAuthor(String id) {
         List<Author> authors = new ArrayList<>();
         if (id.equals("all")) {
             authors.addAll(repository.findAll());
@@ -33,6 +30,6 @@ public class AuthorLibraryImpl implements AuthorLibrary {
                 authors.add(repository.findById(authorId).get());
             }
         }
-        oAuthor.print(authors);
+        return authors;
     }
 }

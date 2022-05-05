@@ -4,6 +4,7 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -37,6 +38,9 @@ public class Book {
     @ManyToOne
     @JoinColumn(name = "GENRE_ID")
     Genre genre;
+
+    @OneToMany(mappedBy = "book", orphanRemoval = true)
+    List<Comment> comment;
 
     @Override
     public boolean equals(Object o) {

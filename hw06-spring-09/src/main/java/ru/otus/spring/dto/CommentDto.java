@@ -4,13 +4,10 @@ import lombok.Builder;
 import lombok.Data;
 import ru.otus.spring.dao.entity.Book;
 
-import java.util.List;
-
 @Data
 @Builder
-public class AuthorDto {
+public class CommentDto {
     Long id;
-    String name;
-    String surname;
-    List<BookDto> bookDtoList;
+    BookDto bookDto;
+    String comment;
 }

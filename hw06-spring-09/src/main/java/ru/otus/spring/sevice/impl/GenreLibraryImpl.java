@@ -8,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.otus.spring.dao.entity.Genre;
 import ru.otus.spring.dao.repository.CRUD;
 import ru.otus.spring.sevice.GenreLibrary;
-import ru.otus.spring.sevice.OGenre;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,11 +18,9 @@ import java.util.List;
 public class GenreLibraryImpl implements GenreLibrary {
 
     CRUD<Genre> genreRepo;
-    OGenre oGenre;
 
     @Override
-    @Transactional(readOnly = true)
-    public void selectGenre(String id) {
+    public List<Genre> selectGenre(String id) {
         List<Genre> genres = new ArrayList<>();
         if (id.equals("all")) {
             genres.addAll(genreRepo.findAll());
@@ -33,6 +30,6 @@ public class GenreLibraryImpl implements GenreLibrary {
                 genres.add(genreRepo.findById(genreId).get());
             }
         }
-        oGenre.print(genres);
+        return genres;
     }
 }

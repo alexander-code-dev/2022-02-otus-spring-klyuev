@@ -1,5 +1,9 @@
 package ru.otus.spring.sevice;
 
+import ru.otus.spring.dao.entity.Author;
+
+import java.util.List;
+
 public interface AuthorLibrary {
-    void selectAuthor(String id);
+    List<Author> selectAuthor(String id);
 }

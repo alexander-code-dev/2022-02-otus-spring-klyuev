@@ -27,7 +27,6 @@ public class Author {
     @OneToMany(
             mappedBy = "author"
             , cascade = {CascadeType.MERGE, CascadeType.PERSIST}
-            , fetch = FetchType.LAZY
     )
     @BatchSize(size = 10)
     List<Book> books;

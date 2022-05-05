@@ -2,10 +2,10 @@ package ru.otus.spring.mappers.impl;
 
 import org.springframework.stereotype.Component;
 import ru.otus.spring.dto.BookDto;
-import ru.otus.spring.mappers.MBook;
+import ru.otus.spring.mappers.BookMapper;
 
 @Component
-public class MBookImpl implements MBook {
+public class BookMapperImpl implements BookMapper {
     public BookDto convertToDto(Long id, String bookName, Integer pageVolume, Integer bookReleaseYear) {
         return BookDto.builder()
                 .id(id)

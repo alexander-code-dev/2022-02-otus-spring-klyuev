@@ -2,40 +2,36 @@ package ru.otus.spring.dao.entity;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-import org.hibernate.annotations.BatchSize;
 
 import javax.persistence.*;
-import java.util.List;
 import java.util.Objects;
 
 @Entity
+@Table(name = "COMMENT")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@Table(name = "GENRE")
-public class Genre {
-
+public class Comment {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "GENRE_SEQ")
-    @SequenceGenerator(name = "GENRE_SEQ", sequenceName = "GENRE_ID_SEQ", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "COMMENT_SEQ")
+    @SequenceGenerator(name = "COMMENT_SEQ", sequenceName = "COMMENT_ID_SEQ", allocationSize = 1)
     Long id;
-    String name;
 
-    @OneToMany(
-            mappedBy = "genre"
-            , cascade = {CascadeType.MERGE, CascadeType.PERSIST}
-    )
-    @BatchSize(size = 10)
-    List<Book> books;
+    @ManyToOne
+    @JoinColumn(name = "BOOK_ID")
+    Book book;
+
+    @Column(name ="COMMENT")
+    String comment;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Genre genre = (Genre) o;
-        return Objects.equals(id, genre.id);
+        Comment comment = (Comment) o;
+        return Objects.equals(id, comment.id);
     }
 
     @Override
@@ -45,9 +41,9 @@ public class Genre {
 
     @Override
     public String toString() {
-        return "Genre{" +
+        return "Comment{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
+                ", comment='" + comment + '\'' +
                 '}';
     }
 }

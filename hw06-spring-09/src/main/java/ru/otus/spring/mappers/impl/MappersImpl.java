@@ -4,10 +4,7 @@ import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Component;
-import ru.otus.spring.dto.AuthorDto;
-import ru.otus.spring.dto.BookDto;
-import ru.otus.spring.dto.DescriptionDto;
-import ru.otus.spring.dto.GenreDto;
+import ru.otus.spring.dto.*;
 import ru.otus.spring.mappers.*;
 
 @Component
@@ -15,24 +12,30 @@ import ru.otus.spring.mappers.*;
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class MappersImpl implements Mappers {
 
-    MGenre mGenre;
-    MDescription mDescription;
-    MBook mBook;
-    MAuthor mAuthor;
+    GenreMapper genreMapper;
+    DescriptionMapper descriptionMapper;
+    BookMapper bookMapper;
+    AuthorMapper authorMapper;
+    CommentMapper commentMapper;
 
     public GenreDto getGenreDto(String genreName) {
-        return mGenre.convertToDto(genreName);
+        return genreMapper.convertToDto(genreName);
     }
     public DescriptionDto getDescriptionDto(String description) {
-        return mDescription.convertToDto(description);
+        return descriptionMapper.convertToDto(description);
     }
     public BookDto getBookDto(Long id, String bookName, Integer pageVolume, Integer bookReleaseYear) {
-        return mBook.convertToDto(id, bookName, pageVolume, bookReleaseYear);
+        return bookMapper.convertToDto(id, bookName, pageVolume, bookReleaseYear);
     }
     public BookDto getBookDto(String bookName, Integer pageVolume, Integer bookReleaseYear) {
-        return mBook.convertToDto(bookName, pageVolume, bookReleaseYear);
+        return bookMapper.convertToDto(bookName, pageVolume, bookReleaseYear);
     }
     public AuthorDto getAuthorDto(String authorName, String authorSurname) {
-        return mAuthor.convertToDto(authorName, authorSurname);
+        return authorMapper.convertToDto(authorName, authorSurname);
+    }
+
+    @Override
+    public CommentDto getCommentDto(Long id, String comment) {
+        return commentMapper.convertToDto(id, comment);
     }
 }
