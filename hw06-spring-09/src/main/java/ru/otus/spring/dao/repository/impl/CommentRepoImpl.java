@@ -5,7 +5,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Component;
 import ru.otus.spring.dao.entity.Comment;
-import ru.otus.spring.dao.repository.CRUD;
+import ru.otus.spring.dao.repository.CommentRepo;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -16,7 +16,7 @@ import java.util.Optional;
 @Component
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
-public class CommentRepoImpl implements CRUD<Comment> {
+public class CommentRepoImpl implements CommentRepo {
 
     @PersistenceContext
     EntityManager entityManager;
@@ -27,6 +27,13 @@ public class CommentRepoImpl implements CRUD<Comment> {
 
     public List<Comment> findAll() {
         TypedQuery<Comment> query = entityManager.createQuery("SELECT a FROM Comment a", Comment.class);
+        return query.getResultList();
+    }
+
+    public List<Comment> findAllByBookId(long bookId) {
+        TypedQuery<Comment> query = entityManager
+                .createQuery("SELECT a FROM Comment a WHERE a.book.id = :bookId", Comment.class)
+                .setParameter("bookId", bookId);
         return query.getResultList();
     }
 

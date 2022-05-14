@@ -11,11 +11,14 @@ import ru.otus.spring.dao.entity.Comment;
 import ru.otus.spring.dao.entity.Description;
 import ru.otus.spring.dao.entity.Genre;
 import ru.otus.spring.dao.repository.CRUD;
+import ru.otus.spring.dao.repository.CommentRepo;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DataJpaTest
 @ComponentScan({"ru.otus.spring.dao.repository.impl"})
@@ -23,9 +26,16 @@ import static org.junit.jupiter.api.Assertions.*;
 class CommentRepoImplTest {
 
     @Autowired
-    CRUD<Comment> commentRepo;
+    CommentRepo commentRepo;
     @Autowired
     TestEntityManager testEntityManager;
+
+    @Test
+    @DisplayName("Get all comment by book_id")
+    void findAllByBookId() {
+        List<Comment> comments = commentRepo.findAllByBookId(1);
+        assertEquals(4, comments.size());
+    }
 
     @Test
     @DisplayName("Get comment by id")
