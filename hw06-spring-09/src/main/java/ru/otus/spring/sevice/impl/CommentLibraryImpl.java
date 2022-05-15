@@ -9,12 +9,13 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.otus.spring.dao.entity.Book;
 import ru.otus.spring.dao.entity.Comment;
 import ru.otus.spring.dao.repository.CRUD;
-import ru.otus.spring.dao.repository.CommentRepo;
 import ru.otus.spring.dto.BookDto;
 import ru.otus.spring.dto.CommentDto;
 import ru.otus.spring.sevice.CommentLibrary;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -23,34 +24,33 @@ import java.util.stream.Collectors;
 @Slf4j
 public class CommentLibraryImpl implements CommentLibrary {
 
-    CommentRepo commentRepo;
+    CRUD<Comment> commentRepo;
     CRUD<Book> bookRepo;
 
     @Override
-    public List<CommentDto> getAllCommentByBookId(long bookId) {
-        return commentRepo.findAllByBookId(bookId)
-                .stream()
+    public List<CommentDto> getAllCommentsByBookId(long bookId) {
+        Optional<Book> book = bookRepo.findById(bookId);
+        return book.map(value -> value.getComments().stream()
                 .map(m -> CommentDto.builder()
                         .id(m.getId())
                         .comment(m.getComment())
                         .bookDto(BookDto.builder().name(m.getBook().getName()).build())
                         .build())
-                .collect(Collectors.toList());
+                .collect(Collectors.toList())).orElseGet(ArrayList::new);
     }
 
     @Override
-    public Long insertComment(CommentDto commentDto) {
-        Comment comment = new Comment();
+    @Transactional
+    public void insertComment(CommentDto commentDto) {
         Long id = commentDto.getBookDto().getId();
         if (bookRepo.findById(id).isPresent()) {
             Book book = bookRepo.findById(id).get();
-            comment.setBook(book);
+            Comment comment = new Comment();
             comment.setComment(commentDto.getComment());
-            commentRepo.save(comment);
-            return comment.getId();
+            comment.setBook(book);
+            book.getComments().add(comment);
         } else {
             log.warn("invalid book id: {}", id);
-            return null;
         }
     }
 

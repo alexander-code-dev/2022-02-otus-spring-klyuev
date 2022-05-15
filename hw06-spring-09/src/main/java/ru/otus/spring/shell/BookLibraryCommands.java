@@ -35,7 +35,7 @@ public class BookLibraryCommands {
         if (books.size() == 1) {
             String delimiter = System.lineSeparator()+"     ";
             StringJoiner joiner = new StringJoiner(delimiter);
-            for (Comment comment:books.get(0).getComment()) {
+            for (Comment comment:books.get(0).getComments()) {
                 joiner.add(comment.getId()+") "+comment.getComment());
             }
             System.out.println(System.lineSeparator() + "№ "+books.get(0).getId()+System.lineSeparator()

@@ -39,8 +39,8 @@ public class Book {
     @JoinColumn(name = "GENRE_ID")
     Genre genre;
 
-    @OneToMany(mappedBy = "book", orphanRemoval = true)
-    List<Comment> comment;
+    @OneToMany(mappedBy = "book", orphanRemoval = true, cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE})
+    List<Comment> comments;
 
     @Override
     public boolean equals(Object o) {

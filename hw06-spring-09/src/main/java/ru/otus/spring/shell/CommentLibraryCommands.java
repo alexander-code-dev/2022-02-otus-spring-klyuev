@@ -24,11 +24,12 @@ public class CommentLibraryCommands {
     @ShellMethod(key = {"sc"}, value = "select book commentary")
     @Transactional
     public void printCommentsByIdBook(@ShellOption(value = "-book_id") Long id) {
-        List<CommentDto> commentDtoList = commentLibrary.getAllCommentByBookId(id);
+        List<CommentDto> commentDtoList = commentLibrary.getAllCommentsByBookId(id);
         System.out.println("Book name: "+commentDtoList.get(0).getBookDto().getName());
         commentDtoList.forEach(f -> {
             System.out.println("id: "+f.getId()+" - comment: "+f.getComment());
         });
+        System.out.println("Done");
     }
 
     @ShellMethod(key = {"ic"}, value = "Insert book commentary")
@@ -37,6 +38,7 @@ public class CommentLibraryCommands {
                            @ShellOption(value = "-comment") String comment) {
         CommentDto commentDto = mappers.getCommentDto(id, comment);
         commentLibrary.insertComment(commentDto);
+        System.out.println("Done");
     }
 
     @ShellMethod(key = {"dc"}, value = "Delete comment by id")
