@@ -28,6 +28,7 @@ public class CommentLibraryImpl implements CommentLibrary {
     CRUD<Book> bookRepo;
 
     @Override
+    @Transactional(readOnly = true)
     public List<CommentDto> getAllCommentsByBookId(long bookId) {
         Optional<Book> book = bookRepo.findById(bookId);
         return book.map(value -> value.getComments().stream()
