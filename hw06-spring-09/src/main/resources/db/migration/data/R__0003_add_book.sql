@@ -1,0 +1,13 @@
+INSERT INTO BOOK (name, description_id, page_volume, book_release_year, author_id, genre_id) values ('11/22/63', 1, 928, 2021, 1, 1);
+INSERT INTO BOOK (name, description_id, page_volume, book_release_year, author_id, genre_id) values ('Пациент особой клиники.', 2, 351, 2021, 2, 2);
+INSERT INTO BOOK (name, description_id, page_volume, book_release_year, author_id, genre_id) values ('Клатбище домашних жывотных', 3, 480, 2016, 1, 1);
+INSERT INTO BOOK (name, description_id, page_volume, book_release_year, author_id, genre_id) values ('Весь Шерлок Холмс', 4, 1392, 2021, 3, 1);
+INSERT INTO BOOK (name, description_id, page_volume, book_release_year, author_id, genre_id) values ('Зеленая миля', 5, 384, 2012, 1, 1);
+INSERT INTO BOOK (name, description_id, page_volume, book_release_year, author_id, genre_id) values ('Мы', 6, 288, 2021, 4, 3);
+INSERT INTO BOOK (name, description_id, page_volume, book_release_year, author_id, genre_id) values ('Мара и Морок. 500 лет назад', 7, 448, 2022, 5, 3);
+INSERT INTO BOOK (name, description_id, page_volume, book_release_year, author_id, genre_id) values ('Дюна', 8, 704, 2021, 6, 3);
+INSERT INTO BOOK (name, description_id, page_volume, book_release_year, author_id, genre_id) values ('Метро 2033', 9, 384, 2021, 7, 3);
+INSERT INTO BOOK (name, description_id, page_volume, book_release_year, author_id, genre_id) values ('До встречи с тобой', 10, 480, 2022, 8, 4);
+INSERT INTO BOOK (name, description_id, page_volume, book_release_year, author_id, genre_id) values ('Всё та же я', 11, 576, 2021, 8, 4);
+INSERT INTO BOOK (name, description_id, page_volume, book_release_year, author_id, genre_id) values ('Шантарам', 12, 1270, 2015, 9, 5);
+INSERT INTO BOOK (name, description_id, page_volume, book_release_year, author_id, genre_id) values ('Граф Монте-Кристо', 13, 1264, 2021, 10, 5);

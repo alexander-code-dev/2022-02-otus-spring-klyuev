@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>ru.otus.springs</groupId>
+    <artifactId>hw-otus</artifactId>
+    <version>1.0</version>
+
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>hw01-spring-01</module>
+        <module>hw02-spring-02</module>
+        <module>hw03-spring-03</module>
+        <module>hw04-spring-06</module>
+        <module>hw05-spring-07</module>
+        <module>hw06-spring-09</module>
+    </modules>
+</project>
