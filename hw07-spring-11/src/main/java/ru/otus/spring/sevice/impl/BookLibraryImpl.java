@@ -36,7 +36,7 @@ public class BookLibraryImpl implements BookLibrary {
     public List<Book> selectBook(String id) {
         List<Book> books = new ArrayList<>();
         if (id.equals("all")) {
-            books.addAll(bookRepository.findAll());
+            books.addAll(bookRepository.findAllByOrderByIdAsc());
         } else {
             long bookId = Long.parseLong(id);
             if (bookRepository.findById(bookId).isPresent()) {
@@ -47,7 +47,6 @@ public class BookLibraryImpl implements BookLibrary {
     }
 
     @Override
-    @Transactional
     public void updateBook(BookDto bookDto) {
         if (bookRepository.findById(bookDto.getId()).isPresent()) {
             Book book = bookRepository.findById(bookDto.getId()).get();
@@ -60,11 +59,11 @@ public class BookLibraryImpl implements BookLibrary {
             if (0 != bookDto.getBookReleaseYear()) {
                 book.setBookReleaseYear(bookDto.getBookReleaseYear());
             }
+            bookRepository.save(book);
         }
     }
 
     @Override
-    @Transactional
     public Long insertBook(AuthorDto authorDto, GenreDto genreDto, BookDto bookDto, DescriptionDto descriptionDto) {
 
         Author author = new Author();
@@ -93,7 +92,6 @@ public class BookLibraryImpl implements BookLibrary {
     }
 
     @Override
-    @Transactional
     public void deleteBook(Integer id) {
         long bookId = id.longValue();
         if (bookRepository.findById(bookId).isPresent()) {

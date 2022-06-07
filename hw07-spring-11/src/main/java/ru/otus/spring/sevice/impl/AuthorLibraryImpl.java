@@ -23,7 +23,7 @@ public class AuthorLibraryImpl implements AuthorLibrary {
     public List<Author> selectAuthor(String id) {
         List<Author> authors = new ArrayList<>();
         if (id.equals("all")) {
-            authors.addAll(authorRepository.findAll());
+            authors.addAll(authorRepository.findAllByOrderByIdAsc());
         } else {
             long authorId = Long.parseLong(id);
             Optional<Author> author = authorRepository.findById(authorId);

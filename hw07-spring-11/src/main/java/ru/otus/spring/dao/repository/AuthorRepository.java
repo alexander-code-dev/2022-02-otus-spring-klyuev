@@ -6,5 +6,5 @@ import ru.otus.spring.dao.entity.Author;
 import java.util.List;
 
 public interface AuthorRepository extends CrudRepository<Author, Long> {
-    List<Author> findAll();
+    List<Author> findAllByOrderByIdAsc();
 }

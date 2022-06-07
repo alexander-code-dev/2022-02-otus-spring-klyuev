@@ -22,7 +22,7 @@ public class GenreLibraryImpl implements GenreLibrary {
     public List<Genre> selectGenre(String id) {
         List<Genre> genres = new ArrayList<>();
         if (id.equals("all")) {
-            genres.addAll(genreRepository.findAll());
+            genres.addAll(genreRepository.findAllByOrderByIdAsc());
         } else {
             long genreId = Long.parseLong(id);
             if (genreRepository.findById(genreId).isPresent()) {

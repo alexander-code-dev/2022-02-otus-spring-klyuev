@@ -57,7 +57,6 @@ public class CommentLibraryImpl implements CommentLibrary {
     }
 
     @Override
-    @Transactional
     public void deleteComment(Integer id) {
         long commentId = id.longValue();
         if (commentRepository.findById(commentId).isPresent()) {

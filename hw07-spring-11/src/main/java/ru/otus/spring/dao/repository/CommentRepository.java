@@ -6,5 +6,5 @@ import ru.otus.spring.dao.entity.Comment;
 import java.util.List;
 
 public interface CommentRepository extends CrudRepository<Comment, Long> {
-    List<Comment> findAll();
+
 }

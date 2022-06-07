@@ -6,5 +6,5 @@ import ru.otus.spring.dao.entity.Description;
 import java.util.List;
 
 public interface DescriptionRepository extends CrudRepository<Description, Long> {
-    List<Description> findAll();
+
 }
