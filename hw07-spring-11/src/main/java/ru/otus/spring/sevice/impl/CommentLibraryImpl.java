@@ -42,7 +42,6 @@ public class CommentLibraryImpl implements CommentLibrary {
     }
 
     @Override
-    @Transactional
     public void insertComment(CommentDto commentDto) {
         Long id = commentDto.getBookDto().getId();
         if (bookRepository.findById(id).isPresent()) {
@@ -50,7 +49,7 @@ public class CommentLibraryImpl implements CommentLibrary {
             Comment comment = new Comment();
             comment.setComment(commentDto.getComment());
             comment.setBook(book);
-            book.getComments().add(comment);
+            commentRepository.save(comment);
         } else {
             log.warn("invalid book id: {}", id);
         }
