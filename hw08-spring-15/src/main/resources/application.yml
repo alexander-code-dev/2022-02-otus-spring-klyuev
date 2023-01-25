@@ -1,0 +1,16 @@
+spring:
+  data:
+    mongodb:
+      #database: hw08-spring-15
+      #host: localhost
+      #port: 27017
+      #username: adm
+      #password: password
+      #authentication-database: adm
+      #uri: mongodb://adm1:pwd@localhost:27017/hw08-spring-15
+mongock:
+  enabled: true
+  #runner-type: "ApplicationRunner" # default
+  runner-type: "InitializingBean"
+  change-logs-scan-package:
+    - ru.otus.spring.changelog

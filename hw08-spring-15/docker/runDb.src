@@ -1,0 +1,6 @@
+docker run \
+--rm \
+--name hw08-spring-15 \
+-e MONGO_INITDB_DATABASE=hw08-spring-15 \
+-p 27017:27017 \
+mongo:3.5.5
